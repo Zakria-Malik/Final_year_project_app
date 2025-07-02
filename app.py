@@ -36,17 +36,25 @@ if selected == "Home":
 if selected == "Heart Disease":
     st.title("❤️ Heart Disease Prediction")
 
-    # Replace this with your real dataset
+    # Dummy dataset (replace with your real dataset and model)
     X, y = make_classification(n_samples=500, n_features=13, random_state=0)
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)
 
     heart_model = LogisticRegression()
     heart_model.fit(X_train, y_train)
 
-    st.subheader("Enter the following details:")
+    st.subheader("Enter the following patient details:")
+
+    heart_features = [
+        "Sex", "Chest Pain Type (cp)", "Resting Blood Pressure (trestbps)", "Cholesterol Level (chol)",
+        "Fasting Blood Sugar (fbs)", "Resting ECG (restecg)", "Max Heart Rate (thalach)",
+        "Exercise-Induced Angina (exang)", "Oldpeak", "Slope", "Number of Major Vessels (ca)", "Thalassemia (thal)",
+        "Target (Skip this - Output Variable)"
+    ]
+
     inputs = []
     for i in range(13):
-        val = st.number_input(f"Feature {i+1}", key=f"heart_{i}")
+        val = st.number_input(f"{heart_features[i]}", key=f"heart_{i}")
         inputs.append(val)
 
     if st.button("Predict Heart Disease"):
@@ -54,37 +62,26 @@ if selected == "Heart Disease":
         result = "✅ Positive (High Risk)" if prediction[0] == 1 else "🟢 Negative (Low Risk)"
         st.success(f"Prediction: {result}")
 
-        # Input Feature Chart
-        st.subheader("📊 Your Input Features")
-        feature_labels = [f"Feature {i+1}" for i in range(13)]
-        input_df = pd.DataFrame({'Feature': feature_labels, 'Value': inputs})
-        st.bar_chart(input_df.set_index("Feature"))
-
-        # Prediction Probability
-        try:
-            prob = heart_model.predict_proba([inputs])
-            st.subheader("🧮 Prediction Probabilities")
-            st.write(f"Chance of No Heart Disease: `{prob[0][0]:.2f}`")
-            st.write(f"Chance of Heart Disease: `{prob[0][1]:.2f}`")
-            st.progress(int(prob[0][1] * 100))
-        except:
-            st.info("Model doesn't support probability scores.")
-
 # ---------------- Diabetes Page ----------------
 if selected == "Diabetes":
     st.title("💉 Diabetes Prediction")
 
-    # Replace this with your real dataset
     X, y = make_classification(n_samples=500, n_features=8, random_state=1)
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)
 
     diabetes_model = RandomForestClassifier()
     diabetes_model.fit(X_train, y_train)
 
-    st.subheader("Enter the following details:")
+    st.subheader("Enter the following patient details:")
+
+    diabetes_features = [
+        "Number of Pregnancies", "Glucose Level", "Blood Pressure", "Skin Thickness",
+        "Insulin Level", "BMI", "Diabetes Pedigree Function", "Age"
+    ]
+
     inputs = []
     for i in range(8):
-        val = st.number_input(f"Feature {i+1}", key=f"diabetes_{i}")
+        val = st.number_input(f"{diabetes_features[i]}", key=f"diabetes_{i}")
         inputs.append(val)
 
     if st.button("Predict Diabetes"):
@@ -92,56 +89,30 @@ if selected == "Diabetes":
         result = "✅ Positive (Diabetic)" if prediction[0] == 1 else "🟢 Negative (Not Diabetic)"
         st.success(f"Prediction: {result}")
 
-        # Input Feature Chart
-        st.subheader("📊 Your Input Features")
-        feature_labels = [f"Feature {i+1}" for i in range(8)]
-        input_df = pd.DataFrame({'Feature': feature_labels, 'Value': inputs})
-        st.bar_chart(input_df.set_index("Feature"))
-
-        # Prediction Probability
-        try:
-            prob = diabetes_model.predict_proba([inputs])
-            st.subheader("🧮 Prediction Probabilities")
-            st.write(f"Chance of No Diabetes: `{prob[0][0]:.2f}`")
-            st.write(f"Chance of Diabetes: `{prob[0][1]:.2f}`")
-            st.progress(int(prob[0][1] * 100))
-        except:
-            st.info("Model doesn't support probability scores.")
-
 # ---------------- Parkinson's Page ----------------
 if selected == "Parkinson’s":
     st.title("🧠 Parkinson’s Disease Prediction")
 
-    # Replace this with your real dataset
     X, y = make_classification(n_samples=500, n_features=15, random_state=2)
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)
 
     parkinson_model = SVC(probability=True)
     parkinson_model.fit(X_train, y_train)
 
-    st.subheader("Enter the following details:")
+    st.subheader("Enter the following vocal measurements:")
+
+    parkinson_features = [
+        "MDVP:Fo(Hz)", "MDVP:Fhi(Hz)", "MDVP:Flo(Hz)", "MDVP:Jitter(%)", "MDVP:Jitter(Abs)",
+        "MDVP:RAP", "MDVP:PPQ", "Jitter:DDP", "MDVP:Shimmer", "MDVP:Shimmer(dB)",
+        "Shimmer:APQ3", "Shimmer:APQ5", "MDVP:APQ", "Shimmer:DDA", "NHR"
+    ]
+
     inputs = []
     for i in range(15):
-        val = st.number_input(f"Feature {i+1}", key=f"parkinson_{i}")
+        val = st.number_input(f"{parkinson_features[i]}", key=f"parkinson_{i}")
         inputs.append(val)
 
-    if st.button("Predict Parkinson’s"):
+    if st.button("Predict Parkinson’s Disease"):
         prediction = parkinson_model.predict([inputs])
         result = "✅ Positive (Parkinson’s Detected)" if prediction[0] == 1 else "🟢 Negative (No Parkinson’s)"
         st.success(f"Prediction: {result}")
-
-        # Input Feature Chart
-        st.subheader("📊 Your Input Features")
-        feature_labels = [f"Feature {i+1}" for i in range(15)]
-        input_df = pd.DataFrame({'Feature': feature_labels, 'Value': inputs})
-        st.bar_chart(input_df.set_index("Feature"))
-
-        # Prediction Probability
-        try:
-            prob = parkinson_model.predict_proba([inputs])
-            st.subheader("🧮 Prediction Probabilities")
-            st.write(f"Chance of No Parkinson's: `{prob[0][0]:.2f}`")
-            st.write(f"Chance of Parkinson's: `{prob[0][1]:.2f}`")
-            st.progress(int(prob[0][1] * 100))
-        except:
-            st.info("Model doesn't support probability scores.")
