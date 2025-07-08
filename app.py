@@ -37,7 +37,7 @@ if selected == "Heart Disease":
     st.title("❤️ Heart Disease Prediction")
 
     # Dummy dataset (replace with your real dataset and model)
-    X, y = make_classification(n_samples=500, n_features=13, random_state=0)
+    X, y = make_classification(n_samples=500, n_features=12, random_state=0)
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)
 
     heart_model = LogisticRegression()
