@@ -46,11 +46,10 @@ if selected == "Heart Disease":
     st.subheader("Enter the following patient details:")
 
     heart_features = [
-        "Sex", "Chest Pain Type (cp)", "Resting Blood Pressure (trestbps)", "Cholesterol Level (chol)",
-        "Fasting Blood Sugar (fbs)", "Resting ECG (restecg)", "Max Heart Rate (thalach)",
-        "Exercise-Induced Angina (exang)", "Oldpeak", "Slope", "Number of Major Vessels (ca)", "Thalassemia (thal)",
-        )"
-    ]
+    "Sex", "Chest Pain Type (cp)", "Resting Blood Pressure (trestbps)", "Cholesterol Level (chol)",
+    "Fasting Blood Sugar (fbs)", "Resting ECG (restecg)", "Max Heart Rate (thalach)",
+    "Exercise-Induced Angina (exang)", "Oldpeak", "Slope", "Number of Major Vessels (ca)", "Thalassemia (thal)",
+]
 
     inputs = []
     for i in range(13):
