@@ -48,8 +48,8 @@ if selected == "Heart Disease":
     heart_features = [
         "Sex", "Chest Pain Type (cp)", "Resting Blood Pressure (trestbps)", "Cholesterol Level (chol)",
         "Fasting Blood Sugar (fbs)", "Resting ECG (restecg)", "Max Heart Rate (thalach)",
-        "Exercise-Induced Angina (exang)", "Oldpeak", "Slope", "Number of Major Vessels (ca)", "Thalassemia (thal)",
-        "Target (Skip this - Output Variable)"
+        "Exercise-Induced Angina (exang)", "Oldpeak", "Slope", "Number of Major Vessels (ca)", "Thalassemia (thal)"
+        )"
     ]
 
     inputs = []
